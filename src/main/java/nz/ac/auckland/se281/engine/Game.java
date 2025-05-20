@@ -22,8 +22,7 @@ public class Game {
 
   public void play() {
     MessageCli.START_ROUND.printMessage(this.thisRoundNumber, this.numberOfRounds);
-    this.thisRoundNumber += 1;
-
+    
     MessageCli.ASK_HUMAN_INPUT.printMessage();
 
     String chosenColourString, guessColourString;
@@ -54,6 +53,16 @@ public class Game {
       chosenColour.toString(), 
       guessColour.toString()
     );
+
+    Boolean isPowerColourRound = false;
+    Colour powerColour;
+    if (this.thisRoundNumber == 3) {
+      isPowerColourRound = true;
+      powerColour = Colour.getRandomColourForPowerColour();
+      MessageCli.PRINT_POWER_COLOUR.printMessage(powerColour.toString());
+    }
+
+    this.thisRoundNumber += 1;
     
   }
 
