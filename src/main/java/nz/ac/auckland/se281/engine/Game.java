@@ -21,6 +21,10 @@ public class Game {
   }
 
   public void play() {
+    if (thisRoundNumber == 0 || thisRoundNumber > numberOfRounds) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
     MessageCli.START_ROUND.printMessage(this.thisRoundNumber, this.numberOfRounds);
     
     MessageCli.ASK_HUMAN_INPUT.printMessage();
