@@ -3,6 +3,7 @@ package nz.ac.auckland.se281.engine;
 import nz.ac.auckland.se281.Main.Difficulty;
 import nz.ac.auckland.se281.cli.MessageCli;
 import nz.ac.auckland.se281.cli.Utils;
+import nz.ac.auckland.se281.model.Colour;;
 
 public class Game {
   public static String AI_NAME = "HAL-9000";
@@ -21,8 +22,26 @@ public class Game {
   public void play() {
     MessageCli.START_ROUND.printMessage(this.thisRoundNumber, this.numberOfRounds);
     this.thisRoundNumber += 1;
+
     MessageCli.ASK_HUMAN_INPUT.printMessage();
-    String input = Utils.scanner.nextLine();
+
+    String chosenColourString, guessColourString;
+    Colour chosenColour, guessColour;
+
+    while (true) {
+      String input = Utils.scanner.nextLine();
+      chosenColourString = input.split(" ")[0];
+      chosenColour = Colour.fromInput(chosenColourString);
+      guessColourString = input.split(" ")[1];
+      guessColour = Colour.fromInput(guessColourString);
+
+      if (chosenColour == null || guessColour == null) {
+        MessageCli.INVALID_HUMAN_INPUT.printMessage();
+      } else {
+        break;
+      }
+    }
+    
   }
 
   public void showStats() {}
