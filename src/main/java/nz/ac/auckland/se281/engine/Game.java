@@ -32,7 +32,7 @@ public class Game {
     while (true) {
       String input = Utils.scanner.nextLine();
 
-      if (input.split(" ").length < 2) {
+      if (input.split(" ").length != 2) {
         MessageCli.INVALID_HUMAN_INPUT.printMessage();
         continue;
       }
