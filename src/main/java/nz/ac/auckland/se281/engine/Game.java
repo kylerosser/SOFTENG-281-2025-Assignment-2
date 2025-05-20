@@ -56,7 +56,7 @@ public class Game {
 
     Boolean isPowerColourRound = false;
     Colour powerColour;
-    if (this.thisRoundNumber == 3) {
+    if (this.thisRoundNumber % 3 == 0) {
       isPowerColourRound = true;
       powerColour = Colour.getRandomColourForPowerColour();
       MessageCli.PRINT_POWER_COLOUR.printMessage(powerColour.toString());
