@@ -9,14 +9,15 @@ public class Game {
   public static String AI_NAME = "HAL-9000";
   private int thisRoundNumber;
   private int numberOfRounds;
+  private String playerName;
 
   public Game() {}
 
   public void newGame(Difficulty difficulty, int numRounds, String[] options) {
-    String namePlayer = options[0];
+    this.playerName = options[0];
     this.thisRoundNumber = 1;
     this.numberOfRounds = numRounds;
-    MessageCli.WELCOME_PLAYER.printMessage(namePlayer);
+    MessageCli.WELCOME_PLAYER.printMessage(this.playerName);
   }
 
   public void play() {
@@ -30,6 +31,12 @@ public class Game {
 
     while (true) {
       String input = Utils.scanner.nextLine();
+
+      if (input.split(" ").length < 2) {
+        MessageCli.INVALID_HUMAN_INPUT.printMessage();
+        continue;
+      }
+
       chosenColourString = input.split(" ")[0];
       chosenColour = Colour.fromInput(chosenColourString);
       guessColourString = input.split(" ")[1];
@@ -41,6 +48,12 @@ public class Game {
         break;
       }
     }
+
+    MessageCli.PRINT_INFO_MOVE.printMessage(
+      this.playerName, 
+      chosenColour.toString(), 
+      guessColour.toString()
+    );
     
   }
 
