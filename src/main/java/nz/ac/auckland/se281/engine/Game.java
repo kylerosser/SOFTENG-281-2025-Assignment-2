@@ -19,6 +19,7 @@ public class Game {
 
   public void play() {
     MessageCli.START_ROUND.printMessage(this.thisRoundNumber, this.numberOfRounds);
+    this.thisRoundNumber += 1;
   }
 
   public void showStats() {}
