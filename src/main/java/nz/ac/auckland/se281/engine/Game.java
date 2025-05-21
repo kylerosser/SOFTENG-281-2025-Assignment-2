@@ -52,6 +52,14 @@ public class Game {
       }
     }
 
+    Colour aiChosenColour = Colour.getRandomColourForAi();
+    Colour aiGuessColour = Colour.getRandomColourForAi();
+    MessageCli.PRINT_INFO_MOVE.printMessage(
+      this.AI_NAME, 
+      aiChosenColour.toString(), 
+      aiGuessColour.toString()
+    );
+
     MessageCli.PRINT_INFO_MOVE.printMessage(
       this.playerName, 
       chosenColour.toString(), 
