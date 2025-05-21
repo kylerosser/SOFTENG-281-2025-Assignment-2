@@ -14,6 +14,7 @@ public class Game {
   private Difficulty difficulty;
   private int playerPoints;
   private int aiPoints;
+  private boolean didAiWinLastRound;
   private Ai ai;
   private ArrayList<Colour> playerChosenColours;
 
@@ -26,6 +27,7 @@ public class Game {
     this.difficulty = difficulty;
     this.playerPoints = 0;
     this.aiPoints = 0;
+    this.didAiWinLastRound = false;
     this.ai = AiFactory.createAi(difficulty, this);
     this.playerChosenColours = new ArrayList<Colour>();
     MessageCli.WELCOME_PLAYER.printMessage(this.playerName);
@@ -95,6 +97,9 @@ public class Game {
       if (isPowerColourRound && aiGuessColour == powerColour) {
         aiPointsThisRound += 2;
       }
+      this.didAiWinLastRound = true;
+    } else {
+      this.didAiWinLastRound = false;
     }
     MessageCli.PRINT_OUTCOME_ROUND.printMessage(playerName, playerPointsThisRound);
     MessageCli.PRINT_OUTCOME_ROUND.printMessage(Game.AI_NAME, aiPointsThisRound);
@@ -113,5 +118,9 @@ public class Game {
 
   public int getThisRoundNumber() {
     return this.thisRoundNumber;
+  }
+
+  public boolean getDidAiWinLastRound() {
+    return this.didAiWinLastRound;
   }
 }

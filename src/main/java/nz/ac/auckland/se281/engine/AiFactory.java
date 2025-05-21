@@ -6,14 +6,13 @@ public class AiFactory {
 
   public static Ai createAi(Difficulty difficulty, Game game) {
     if (difficulty == Difficulty.EASY) {
-      EasyAi easyAi = new EasyAi(game);
-      return easyAi;
+      return new EasyAi(game);
     } else if (difficulty == Difficulty.MEDIUM) {
-      MediumAi mediumAi = new MediumAi(game);
-      return mediumAi;
+      return new MediumAi(game);
+    } else if (difficulty == Difficulty.HARD) {
+      return new HardAi(game);
     } else {
-      EasyAi easyAi = new EasyAi(game);
-      return easyAi;
+      return new EasyAi(game);
     }
   }
 }
