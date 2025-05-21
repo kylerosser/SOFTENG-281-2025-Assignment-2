@@ -90,6 +90,9 @@ public class Game {
     MessageCli.PRINT_OUTCOME_ROUND.printMessage(playerName, playerPointsThisRound);
     MessageCli.PRINT_OUTCOME_ROUND.printMessage(Game.AI_NAME, aiPointsThisRound);
 
+    this.playerPoints += playerPointsThisRound;
+    this.aiPoints += aiPointsThisRound;
+
     this.thisRoundNumber += 1;
   }
 
