@@ -65,7 +65,7 @@ public class Game {
         this.playerName, chosenColour.toString(), guessColour.toString());
 
     Boolean isPowerColourRound = false;
-    Colour powerColour;
+    Colour powerColour = null;
     if (this.thisRoundNumber % 3 == 0) {
       isPowerColourRound = true;
       powerColour = Colour.getRandomColourForPowerColour();
@@ -77,9 +77,15 @@ public class Game {
 
     if (aiChosenColour == guessColour) {
       playerPointsThisRound += 1;
+      if (isPowerColourRound && guessColour == powerColour) {
+        playerPointsThisRound += 2;
+      }
     }
     if (chosenColour == aiGuessColour) {
       aiPointsThisRound += 1;
+      if (isPowerColourRound && aiGuessColour == powerColour) {
+        aiPointsThisRound += 2;
+      }
     }
     MessageCli.PRINT_OUTCOME_ROUND.printMessage(playerName, playerPointsThisRound);
     MessageCli.PRINT_OUTCOME_ROUND.printMessage(Game.AI_NAME, aiPointsThisRound);
