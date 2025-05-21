@@ -10,8 +10,10 @@ public class Game {
   private int thisRoundNumber;
   private int numberOfRounds;
   private String playerName;
+  private Difficulty difficulty;
   private int playerPoints;
   private int aiPoints;
+  private Ai ai;
 
   public Game() {}
 
@@ -19,8 +21,10 @@ public class Game {
     this.playerName = options[0];
     this.thisRoundNumber = 1;
     this.numberOfRounds = numRounds;
+    this.difficulty = difficulty;
     this.playerPoints = 0;
     this.aiPoints = 0;
+    this.ai = AiFactory.createAi(difficulty, this);
     MessageCli.WELCOME_PLAYER.printMessage(this.playerName);
   }
 
@@ -56,8 +60,8 @@ public class Game {
       }
     }
 
-    Colour aiChosenColour = Colour.getRandomColourForAi();
-    Colour aiGuessColour = Colour.getRandomColourForAi();
+    Colour aiChosenColour = this.ai.getChosenColour();
+    Colour aiGuessColour = this.ai.getGuessColour();
     MessageCli.PRINT_INFO_MOVE.printMessage(
         Game.AI_NAME, aiChosenColour.toString(), aiGuessColour.toString());
 
