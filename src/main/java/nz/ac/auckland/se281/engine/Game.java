@@ -1,5 +1,6 @@
 package nz.ac.auckland.se281.engine;
 
+import java.util.ArrayList;
 import nz.ac.auckland.se281.Main.Difficulty;
 import nz.ac.auckland.se281.cli.MessageCli;
 import nz.ac.auckland.se281.cli.Utils;
@@ -14,6 +15,7 @@ public class Game {
   private int playerPoints;
   private int aiPoints;
   private Ai ai;
+  private ArrayList<Colour> playerChosenColours;
 
   public Game() {}
 
@@ -25,6 +27,7 @@ public class Game {
     this.playerPoints = 0;
     this.aiPoints = 0;
     this.ai = AiFactory.createAi(difficulty, this);
+    this.playerChosenColours = new ArrayList<Colour>();
     MessageCli.WELCOME_PLAYER.printMessage(this.playerName);
   }
 
@@ -76,6 +79,8 @@ public class Game {
       MessageCli.PRINT_POWER_COLOUR.printMessage(powerColour.toString());
     }
 
+    this.playerChosenColours.add(chosenColour);
+
     int aiPointsThisRound = 0;
     int playerPointsThisRound = 0;
 
@@ -101,4 +106,8 @@ public class Game {
   }
 
   public void showStats() {}
+
+  public ArrayList<Colour> getPlayerChosenColours() {
+    return this.playerChosenColours;
+  }
 }
