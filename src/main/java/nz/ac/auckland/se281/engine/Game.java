@@ -110,4 +110,8 @@ public class Game {
   public ArrayList<Colour> getPlayerChosenColours() {
     return this.playerChosenColours;
   }
+
+  public int getThisRoundNumber() {
+    return this.thisRoundNumber;
+  }
 }

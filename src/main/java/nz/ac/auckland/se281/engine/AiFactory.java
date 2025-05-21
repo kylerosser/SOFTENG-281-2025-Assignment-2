@@ -9,8 +9,8 @@ public class AiFactory {
       EasyAi easyAi = new EasyAi(game);
       return easyAi;
     } else if (difficulty == Difficulty.MEDIUM) {
-      EasyAi easyAi = new EasyAi(game);
-      return easyAi;
+      MediumAi mediumAi = new MediumAi(game);
+      return mediumAi;
     } else {
       EasyAi easyAi = new EasyAi(game);
       return easyAi;
