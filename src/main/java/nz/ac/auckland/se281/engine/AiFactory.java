@@ -5,6 +5,8 @@ import nz.ac.auckland.se281.Main.Difficulty;
 public class AiFactory {
 
   public static Ai createAi(Difficulty difficulty, Game game) {
+    // Select an Ai class to construct based on the difficulty
+    // provided. Follows the Factory design pattern.
     if (difficulty == Difficulty.EASY) {
       return new EasyAi(game);
     } else if (difficulty == Difficulty.MEDIUM) {

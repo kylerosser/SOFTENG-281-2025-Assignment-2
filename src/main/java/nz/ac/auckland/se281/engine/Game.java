@@ -24,18 +24,22 @@ public class Game {
     this.playerPoints = 0;
     this.aiPoints = 0;
     this.didAiWinLastRound = false;
+    // Create an Ai instance using the factory design pattern
     this.ai = AiFactory.createAi(difficulty, this);
+    // Create a list for storing the previously chosen colours by the player
     this.playerChosenColours = new ArrayList<Colour>();
     MessageCli.WELCOME_PLAYER.printMessage(this.playerName);
   }
 
   public void play() {
+    // If no game is running print an appropriate message
     if (thisRoundNumber == 0 || thisRoundNumber > numberOfRounds) {
       MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
-    MessageCli.START_ROUND.printMessage(this.thisRoundNumber, this.numberOfRounds);
 
+    // Prompt the human for input
+    MessageCli.START_ROUND.printMessage(this.thisRoundNumber, this.numberOfRounds);
     MessageCli.ASK_HUMAN_INPUT.printMessage();
 
     String chosenColourString;
@@ -43,19 +47,23 @@ public class Game {
     Colour chosenColour;
     Colour guessColour;
 
+    // Keep retrying until the human enters valid input
     while (true) {
       String input = Utils.scanner.nextLine();
 
+      // Reject anything else than 2 arguments
       if (input.split(" ").length != 2) {
         MessageCli.INVALID_HUMAN_INPUT.printMessage();
         continue;
       }
 
+      // Split the colours into two Colour type variables
       chosenColourString = input.split(" ")[0];
       chosenColour = Colour.fromInput(chosenColourString);
       guessColourString = input.split(" ")[1];
       guessColour = Colour.fromInput(guessColourString);
 
+      // If any colours are invalid, the human needs to try again
       if (chosenColour == null || guessColour == null) {
         MessageCli.INVALID_HUMAN_INPUT.printMessage();
       } else {
@@ -63,6 +71,7 @@ public class Game {
       }
     }
 
+    // Use the Ai instance to appropriately generate the ai's colour
     Colour aiChosenColour = this.ai.getChosenColour();
     Colour aiGuessColour = this.ai.getGuessColour();
     MessageCli.PRINT_INFO_MOVE.printMessage(
@@ -71,6 +80,7 @@ public class Game {
     MessageCli.PRINT_INFO_MOVE.printMessage(
         this.playerName, chosenColour.toString(), guessColour.toString());
 
+    // Every third round select a power colour
     Boolean isPowerColourRound = false;
     Colour powerColour = null;
     if (this.thisRoundNumber % 3 == 0) {
@@ -84,6 +94,8 @@ public class Game {
     int aiPointsThisRound = 0;
     int playerPointsThisRound = 0;
 
+    // Assign a point for correctly guessing the other player's colour
+    // Assign +2 bonus points for a guess that also guesses the power colour
     if (aiChosenColour == guessColour) {
       playerPointsThisRound += 1;
       if (isPowerColourRound && guessColour == powerColour) {
@@ -95,6 +107,7 @@ public class Game {
       if (isPowerColourRound && aiGuessColour == powerColour) {
         aiPointsThisRound += 2;
       }
+      // take note of whether the AI won last round for strategy purposes
       this.didAiWinLastRound = true;
     } else {
       this.didAiWinLastRound = false;
@@ -105,6 +118,7 @@ public class Game {
     this.playerPoints += playerPointsThisRound;
     this.aiPoints += aiPointsThisRound;
 
+    // If this is the last round, print out the end of game info
     if (this.thisRoundNumber == this.numberOfRounds) {
       MessageCli.PRINT_END_GAME.printMessage();
       this.showStats();
