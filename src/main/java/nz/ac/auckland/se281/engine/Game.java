@@ -110,7 +110,12 @@ public class Game {
     this.thisRoundNumber += 1;
   }
 
-  public void showStats() {}
+  public void showStats() {
+    if (thisRoundNumber == 0 || thisRoundNumber > numberOfRounds) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
+  }
 
   public ArrayList<Colour> getPlayerChosenColours() {
     return this.playerChosenColours;
