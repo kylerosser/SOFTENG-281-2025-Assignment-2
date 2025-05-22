@@ -114,6 +114,8 @@ public class Game {
         MessageCli.PRINT_WINNER_GAME.printMessage(this.playerName);
       } else if (this.aiPoints > this.playerPoints) {
         MessageCli.PRINT_WINNER_GAME.printMessage(Game.AI_NAME);
+      } else {
+        MessageCli.PRINT_TIE_GAME.printMessage();
       }
     }
 
