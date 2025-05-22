@@ -15,6 +15,7 @@ public class HardAi extends Ai {
     setStrategy(this.randomStrategy);
   }
 
+  @Override
   public Colour getGuessColour() {
     if (this.game.getThisRoundNumber() == 1 || this.game.getThisRoundNumber() == 2) {
       setStrategy(this.randomStrategy);

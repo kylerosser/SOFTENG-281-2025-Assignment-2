@@ -11,20 +11,16 @@ public class Game {
   private int thisRoundNumber;
   private int numberOfRounds;
   private String playerName;
-  private Difficulty difficulty;
   private int playerPoints;
   private int aiPoints;
   private boolean didAiWinLastRound;
   private Ai ai;
   private ArrayList<Colour> playerChosenColours;
 
-  public Game() {}
-
   public void newGame(Difficulty difficulty, int numRounds, String[] options) {
     this.playerName = options[0];
     this.thisRoundNumber = 1;
     this.numberOfRounds = numRounds;
-    this.difficulty = difficulty;
     this.playerPoints = 0;
     this.aiPoints = 0;
     this.didAiWinLastRound = false;
@@ -42,8 +38,10 @@ public class Game {
 
     MessageCli.ASK_HUMAN_INPUT.printMessage();
 
-    String chosenColourString, guessColourString;
-    Colour chosenColour, guessColour;
+    String chosenColourString;
+    String guessColourString;
+    Colour chosenColour;
+    Colour guessColour;
 
     while (true) {
       String input = Utils.scanner.nextLine();
@@ -68,7 +66,7 @@ public class Game {
     Colour aiChosenColour = this.ai.getChosenColour();
     Colour aiGuessColour = this.ai.getGuessColour();
     MessageCli.PRINT_INFO_MOVE.printMessage(
-        Game.AI_NAME, aiChosenColour.toString(), aiGuessColour.toString());
+        AI_NAME, aiChosenColour.toString(), aiGuessColour.toString());
 
     MessageCli.PRINT_INFO_MOVE.printMessage(
         this.playerName, chosenColour.toString(), guessColour.toString());
@@ -102,7 +100,7 @@ public class Game {
       this.didAiWinLastRound = false;
     }
     MessageCli.PRINT_OUTCOME_ROUND.printMessage(playerName, playerPointsThisRound);
-    MessageCli.PRINT_OUTCOME_ROUND.printMessage(Game.AI_NAME, aiPointsThisRound);
+    MessageCli.PRINT_OUTCOME_ROUND.printMessage(AI_NAME, aiPointsThisRound);
 
     this.playerPoints += playerPointsThisRound;
     this.aiPoints += aiPointsThisRound;
@@ -113,7 +111,7 @@ public class Game {
       if (this.playerPoints > this.aiPoints) {
         MessageCli.PRINT_WINNER_GAME.printMessage(this.playerName);
       } else if (this.aiPoints > this.playerPoints) {
-        MessageCli.PRINT_WINNER_GAME.printMessage(Game.AI_NAME);
+        MessageCli.PRINT_WINNER_GAME.printMessage(AI_NAME);
       } else {
         MessageCli.PRINT_TIE_GAME.printMessage();
       }
@@ -128,7 +126,7 @@ public class Game {
       return;
     }
     MessageCli.PRINT_PLAYER_POINTS.printMessage(this.playerName, this.playerPoints);
-    MessageCli.PRINT_PLAYER_POINTS.printMessage(Game.AI_NAME, this.aiPoints);
+    MessageCli.PRINT_PLAYER_POINTS.printMessage(AI_NAME, this.aiPoints);
   }
 
   public ArrayList<Colour> getPlayerChosenColours() {

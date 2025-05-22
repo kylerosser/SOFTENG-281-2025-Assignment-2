@@ -11,6 +11,7 @@ public class EasyAi extends Ai {
     setStrategy(this.randomStrategy);
   }
 
+  @Override
   public Colour getGuessColour() {
     return this.currentStrategy.getGuessColour(this.game);
   }

@@ -3,7 +3,7 @@ package nz.ac.auckland.se281.engine;
 import nz.ac.auckland.se281.model.Colour;
 
 public abstract class Ai {
-  public Game game;
+  protected Game game;
   protected Strategy currentStrategy;
 
   public Ai(Game game) {

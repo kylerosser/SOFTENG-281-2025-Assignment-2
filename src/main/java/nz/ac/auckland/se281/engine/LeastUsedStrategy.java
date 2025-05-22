@@ -5,6 +5,7 @@ import java.util.HashMap;
 import nz.ac.auckland.se281.model.Colour;
 
 public class LeastUsedStrategy implements Strategy {
+  @Override
   public Colour getGuessColour(Game game) {
     // Access the list of all previous player chosen colours
     ArrayList<Colour> playerChosenColours = game.getPlayerChosenColours();
