@@ -107,6 +107,14 @@ public class Game {
     this.playerPoints += playerPointsThisRound;
     this.aiPoints += aiPointsThisRound;
 
+    if (this.thisRoundNumber == this.numberOfRounds) {
+      MessageCli.PRINT_END_GAME.printMessage();
+      this.showStats();
+      if (this.playerPoints > this.aiPoints) {
+        MessageCli.PRINT_WINNER_GAME.printMessage(this.playerName);
+      }
+    }
+
     this.thisRoundNumber += 1;
   }
 
