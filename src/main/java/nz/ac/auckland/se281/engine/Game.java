@@ -112,6 +112,8 @@ public class Game {
       this.showStats();
       if (this.playerPoints > this.aiPoints) {
         MessageCli.PRINT_WINNER_GAME.printMessage(this.playerName);
+      } else if (this.aiPoints > this.playerPoints) {
+        MessageCli.PRINT_WINNER_GAME.printMessage(Game.AI_NAME);
       }
     }
 
