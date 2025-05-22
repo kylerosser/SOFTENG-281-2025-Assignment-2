@@ -115,6 +115,8 @@ public class Game {
       MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
+    MessageCli.PRINT_PLAYER_POINTS.printMessage(this.playerName, this.playerPoints);
+    MessageCli.PRINT_PLAYER_POINTS.printMessage(Game.AI_NAME, this.aiPoints);
   }
 
   public ArrayList<Colour> getPlayerChosenColours() {
