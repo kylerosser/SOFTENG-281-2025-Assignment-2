@@ -49,7 +49,7 @@ public class Game {
 
     // Keep retrying until the human enters valid input
     while (true) {
-      String input = Utils.scanner.nextLine();
+      String input = Utils.scanner.nextLine().trim();
 
       // Reject anything else than 2 arguments
       if (input.split(" ").length != 2) {
